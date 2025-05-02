@@ -22,7 +22,7 @@ function rotateImage() {
 
         switch (angle) {
           case 0:
-
+git 
             ctx.drawImage(img, 0, 0);
             break;
           case 90:
