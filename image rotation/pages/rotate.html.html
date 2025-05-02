@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Image Rotation</title>
+  <style>
+    body { font-family: sans-serif; padding: 20px; }
+    canvas { border: 1px solid #ccc; margin-top: 10px; }
+  </style>
+</head>
+<body>
+  <h2>Rotate Image</h2>
+
+  <input type="file" id="upload" accept="image/*">
+  <select id="angle">
+    <option value="90">90°</option>
+    <option value="180">180°</option>
+    <option value="270">270°</option>
+  </select>
+  <button onclick="rotateImage()">Rotate</button>
+
+  <br>
+  <canvas id="canvas"></canvas>
+
+  <script src="../js/rotate.js"></script>
+</body>
+</html>
