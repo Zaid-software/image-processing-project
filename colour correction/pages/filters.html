@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Image Filters</title>
+  <style>
+    body { font-family: sans-serif; padding: 20px; }
+    canvas { border: 1px solid #ccc; margin-top: 10px; }
+  </style>
+</head>
+<body>
+  <h2>Apply Color Filter</h2>
+
+  <input type="file" id="upload" accept="image/*">
+  <select id="filter">
+    <option value="none">None</option>
+    <option value="grayscale">Grayscale</option>
+    <option value="sepia">Sepia</option>
+    <option value="invert">Invert</option>
+  </select>
+  <button onclick="applyFilter()">Apply</button>
+
+  <br>
+  <canvas id="canvas"></canvas>
+
+  <script src="../js/filters.js"></script>
+</body>
+</html>
