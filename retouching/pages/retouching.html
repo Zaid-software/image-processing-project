@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Image Retouching</title>
+  <style>
+    body { font-family: sans-serif; padding: 20px; }
+    canvas { border: 1px solid #ccc; cursor: crosshair; }
+  </style>
+</head>
+<body>
+  <h2>Retouch Image</h2>
+  <input type="file" id="uploadRetouch" accept="image/*">
+  <button onclick="downloadRetouchedImage()">Download Retouched Image</button>
+  <br><br>
+  <canvas id="retouchCanvas"></canvas>
+  <script src="retouch.js"></script>
+</body>
+</html>
