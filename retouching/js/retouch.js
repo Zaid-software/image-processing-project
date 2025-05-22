@@ -1,14 +1,16 @@
-let originalImage = new Image();
-let canvas = document.getElementById('retouchcanvas');
-let ctx = canvas.getContext('2d');
+let retouchImage = new Image();
+const canvas = document.getElementById('retouchCanvas');
+const ctx = canvas.getContext('2d');
 
-document.getElementById('upload').addEventListener('change', function (e) {
+let drawing = false;
+
+document.getElementById('uploadRetouch').addEventListener('change', function (e) {
   const file = e.target.files[0];
   if (!file) return;
 
   const reader = new FileReader();
   reader.onload = function (event) {
-    originalImage.src = event.target.result;
+    retouchImage.src = event.target.result;
   };
   reader.readAsDataURL(file);
 });
@@ -45,5 +47,13 @@ function blurArea(x, y) {
 
   ctx.putImageData(imageData, x - size/2, y - size/2);
 }
+
+function downloadRetouchedImage() {
+  const link = document.createElement('a');
+  link.download = 'retouched-image.png';
+  link.href = canvas.toDataURL('image/png');
+  link.click();
+}
+
 
 
