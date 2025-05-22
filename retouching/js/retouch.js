@@ -1,16 +1,14 @@
-let retouchImage = new Image();
-const canvas = document.getElementById('retouchCanvas');
-const ctx = canvas.getContext('2d');
+let originalImage = new Image();
+let canvas = document.getElementById('retouchcanvas');
+let ctx = canvas.getContext('2d');
 
-let drawing = false;
-
-document.getElementById('uploadRetouch').addEventListener('change', function (e) {
+document.getElementById('upload').addEventListener('change', function (e) {
   const file = e.target.files[0];
   if (!file) return;
 
   const reader = new FileReader();
   reader.onload = function (event) {
-    retouchImage.src = event.target.result;
+    originalImage.src = event.target.result;
   };
   reader.readAsDataURL(file);
 });
