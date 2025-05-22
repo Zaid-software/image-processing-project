@@ -40,7 +40,6 @@ function blurArea(x, y) {
   const imageData = ctx.getImageData(x - size/2, y - size/2, size, size);
   const data = imageData.data;
 
-  // Simple box blur
   for (let i = 0; i < data.length; i += 4) {
     const avg = (data[i] + data[i + 1] + data[i + 2]) / 3;
     data[i] = data[i + 1] = data[i + 2] = avg;
@@ -49,9 +48,4 @@ function blurArea(x, y) {
   ctx.putImageData(imageData, x - size/2, y - size/2);
 }
 
-function downloadRetouchedImage() {
-  const link = document.createElement('a');
-  link.download = 'retouched-image.png';
-  link.href = canvas.toDataURL('image/png');
-  link.click();
-}
+
