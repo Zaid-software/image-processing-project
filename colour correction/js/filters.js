@@ -51,4 +51,11 @@ function applyFilter() {
   }
 
   ctx.putImageData(imageData, 0, 0);
+  
+  function downloadImage() {
+  const link = document.createElement('a');
+  link.download = 'filtered-image.png';
+  link.href = canvas.toDataURL('image/png');
+  link.click();
+}
 }
