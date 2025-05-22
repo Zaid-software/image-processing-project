@@ -52,3 +52,9 @@ function rotateImage() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   ctx.drawImage(offscreenCanvas, 0, 0);
 }
+    function downloadImage() {
+  const link = document.createElement('a');
+  link.download = 'filtered-image.png';
+  link.href = canvas.toDataURL('image/png');
+  link.click();
+    }
