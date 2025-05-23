@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Spline Interpolation</title>
+  <style>
+    body { font-family: sans-serif; padding: 20px; }
+    canvas { border: 1px solid #ccc; display: block; margin-top: 10px; }
+  </style>
+</head>
+<body>
+  <h2>Draw Broken Line and Interpolate</h2>
+  <p>Click on canvas to create points. Click "Interpolate" to see the spline.</p>
+  <button onclick="interpolate()">Interpolate</button>
+  <button onclick="resetCanvas()">Reset</button>
+  <canvas id="splineCanvas" width="600" height="400"></canvas>
+
+  <script src="../js/spline.js"></script>
+</body>
+</html>
