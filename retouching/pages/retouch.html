@@ -9,11 +9,25 @@
   </style>
 </head>
 <body>
-  <h2>Retouch Image</h2>
-  <input type="file" id="uploadRetouch" accept="image/*">
-  <button onclick="downloadRetouchedImage()">Download Retouched Image</button>
-  <br><br>
-  <canvas id="retouchCanvas"></canvas>
+  <h2>Image Retouching Tool</h2>
+  
+  <div>
+    <input type="file" id="uploadRetouch" accept="image/*">
+  </div>
+  
+  <div class="controls">
+    <strong>Retouching Mode:</strong>
+    <button id="effectBlur" class="effect-btn active">Blur</button>
+    <button id="effectSepia" class="effect-btn">Sepia Tone</button>
+    <button id="effectRedTint" class="effect-btn">Red Tint</button>
+  </div>
+  
+  <button id="downloadBtn" onclick="downloadRetouchedImage()">Download Retouched Image</button>
+  
+  <div>
+    <canvas id="retouchCanvas"></canvas>
+  </div>
+
   <script src="../js/retouch.js"></script>
 </body>
 </html>
