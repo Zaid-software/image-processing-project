@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Unsharp Masking</title>
+  <style>
+    body { font-family: sans-serif; padding: 20px; }
+    canvas { border: 1px solid #ccc; margin-top: 10px; }
+  </style>
+</head>
+<body>
+  <h2>Unsharp Masking</h2>
+
+  <input type="file" id="uploadUnsharp" accept="image/*">
+  <label>Amount: <input type="range" id="amount" min="0" max="2" step="0.1" value="1"></label>
+  <button onclick="applyUnsharpMask()">Apply</button>
+  <button onclick="downloadUnsharp()">Download</button>
+
+  <br><br>
+  <canvas id="unsharpCanvas"></canvas>
+
+  <script src="../js/unsharp.js"></script>
+</body>
+</html>
