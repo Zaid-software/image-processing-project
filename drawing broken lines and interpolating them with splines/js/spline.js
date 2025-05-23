@@ -32,8 +32,8 @@ function interpolate() {
   ctx.beginPath();
   ctx.moveTo(points[0].x, points[0].y);
 
-  for (let i = 1; i < points.length + 1; i++) {
-    const xc = (points[i].x + points[i + 1].x) / 2;
+  for (let i = 1; i < points.length - 2; i++) {
+    const xc = (points[i].x + points[i + 1].x) / 3;
     const yc = (points[i].y + points[i + 1].y) / 2;
     ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
   }
