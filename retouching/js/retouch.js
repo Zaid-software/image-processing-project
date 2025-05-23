@@ -4,6 +4,7 @@ const ctx = canvas.getContext('2d');
 
 let drawing = false;
 let currentEffect = 'blur';
+let brushSize = 20;
 
 document.getElementById('uploadRetouch').addEventListener('change', function (e) {
   const file = e.target.files[0];
@@ -16,10 +17,23 @@ document.getElementById('uploadRetouch').addEventListener('change', function (e)
   reader.readAsDataURL(file);
 });
 
+document.getElementById('effectBlur').addEventListener('click', () => {
+  currentEffect = 'blur';
+  setActiveButton('effectBlur');
+});
+document.getElementById('effectSepia').addEventListener('click', () => {
+  currentEffect = 'sepia';
+  setActiveButton('effectSepia');
+});
+document.getElementById('effectRedTint').addEventListener('click', () => {
+  currentEffect = 'redtint';
+  setActiveButton('effectRedTint');
+});
 
-document.getElementById('effectBlur').addEventListener('click', () => currentEffect = 'blur');
-document.getElementById('effectSepia').addEventListener('click', () => currentEffect = 'sepia');
-document.getElementById('effectRedTint').addEventListener('click', () => currentEffect = 'redtint');
+document.getElementById('brushSize').addEventListener('input', function(e) {
+  brushSize = parseInt(e.target.value);
+  document.getElementById('brushSizeValue').textContent = brushSize;
+});
 
 retouchImage.onload = function () {
   canvas.width = retouchImage.width;
@@ -38,9 +52,8 @@ canvas.addEventListener('mousemove', function (e) {
   const x = e.clientX - rect.left;
   const y = e.clientY - rect.top;
 
-
   if (currentEffect === 'blur') {
-    blurArea(x, y);
+    applyBlur(x, y);
   } else if (currentEffect === 'sepia') {
     applySepia(x, y);
   } else if (currentEffect === 'redtint') {
@@ -48,22 +61,42 @@ canvas.addEventListener('mousemove', function (e) {
   }
 });
 
-function blurArea(x, y) {
-  const size = 20;
-  const imageData = ctx.getImageData(x - size/2, y - size/2, size, size);
-  const data = imageData.data;
-
-  for (let i = 0; i < data.length; i += 4) {
-    const avg = (data[i] + data[i + 1] + data[i + 2]) / 3;
-    data[i] = data[i + 1] = data[i + 2] = avg;
+function applyBlur(x, y) {
+  const tempCanvas = document.createElement('canvas');
+  const tempCtx = tempCanvas.getContext('2d');
+  tempCanvas.width = brushSize;
+  tempCanvas.height = brushSize;
+  
+  tempCtx.drawImage(
+    canvas, 
+    x - brushSize/2, y - brushSize/2, brushSize, brushSize,
+    0, 0, brushSize, brushSize
+  );
+  
+  const blurPasses = 2;
+  for (let i = 0; i < blurPasses; i++) {
+    tempCtx.globalAlpha = 0.5;
+    tempCtx.drawImage(
+      tempCanvas,
+      0, 0, brushSize, brushSize,
+      0, 0, brushSize/2, brushSize/2
+    );
+    tempCtx.drawImage(
+      tempCanvas,
+      0, 0, brushSize/2, brushSize/2,
+      0, 0, brushSize, brushSize
+    );
   }
-
-  ctx.putImageData(imageData, x - size/2, y - size/2);
+  
+  ctx.drawImage(
+    tempCanvas,
+    0, 0, brushSize, brushSize,
+    x - brushSize/2, y - brushSize/2, brushSize, brushSize
+  );
 }
 
 function applySepia(x, y) {
-  const size = 20;
-  const imageData = ctx.getImageData(x - size/2, y - size/2, size, size);
+  const imageData = ctx.getImageData(x - brushSize/2, y - brushSize/2, brushSize, brushSize);
   const data = imageData.data;
 
   for (let i = 0; i < data.length; i += 4) {
@@ -76,22 +109,27 @@ function applySepia(x, y) {
     data[i + 2] = Math.min(255, (r * 0.272) + (g * 0.534) + (b * 0.131));
   }
 
-  ctx.putImageData(imageData, x - size/2, y - size/2);
+  ctx.putImageData(imageData, x - brushSize/2, y - brushSize/2);
 }
 
 function applyRedTint(x, y) {
-  const size = 20;
-  const imageData = ctx.getImageData(x - size/2, y - size/2, size, size);
+  const imageData = ctx.getImageData(x - brushSize/2, y - brushSize/2, brushSize, brushSize);
   const data = imageData.data;
 
   for (let i = 0; i < data.length; i += 4) {
-    
     data[i] = Math.min(255, data[i] * 1.5);
     data[i + 1] = data[i + 1] * 0.8;
     data[i + 2] = data[i + 2] * 0.8;
   }
 
-  ctx.putImageData(imageData, x - size/2, y - size/2);
+  ctx.putImageData(imageData, x - brushSize/2, y - brushSize/2);
+}
+
+function setActiveButton(buttonId) {
+  document.querySelectorAll('.effect-btn').forEach(btn => {
+    btn.classList.remove('active');
+  });
+  document.getElementById(buttonId).classList.add('active');
 }
 
 function downloadRetouchedImage() {
