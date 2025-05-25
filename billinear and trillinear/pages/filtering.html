@@ -2,22 +2,20 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Bilinear and Trilinear Filtering</title>
+  <title>Bilinear / Trilinear Filtering</title>
   <style>
-    body { font-family: sans-serif; padding: 20px; }
-    canvas { border: 1px solid #ccc; margin-top: 10px; display: block; }
+    canvas { border: 1px solid #ccc; margin: 10px; }
   </style>
 </head>
 <body>
-  <h2>Bilinear and Trilinear Filtering</h2>
+  <h2>Image Transformation with Filtering</h2>
 
-  <input type="file" id="uploadFilter" accept="image/*">
-  <button onclick="applyFilter('bilinear')">Apply Bilinear</button>
-  <button onclick="applyFilter('trilinear')">Apply Trilinear</button>
-  <button onclick="downloadFilter()">Download</button>
+  <input type="file" id="upload" accept="image/*"><br><br>
+  <button onclick="startSelection()">Start Selecting Points</button>
+  <button onclick="applyTransformation()">Transform</button>
+  <canvas id="canvas"></canvas>
+  <canvas id="output" width="500" height="500"></canvas>
 
-  <canvas id="filterCanvas"></canvas>
-
-  <script src="../js/filtering.js"></script>
+  <script src="js/filtering.js"></script>
 </body>
 </html>
