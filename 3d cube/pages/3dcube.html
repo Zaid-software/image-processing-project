@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>3D D6 Cube</title>
+  <style>
+    body { margin: 0; font-family: sans-serif; background: #111; color: #fff; }
+    #controls { position: absolute; top: 10px; left: 10px; z-index: 10; }
+    canvas { display: block; }
+  </style>
+</head>
+<body>
+  <div id="controls">
+    <label>Rotate X: <input type="range" id="rotateX" min="0" max="360"></label><br>
+    <label>Rotate Y: <input type="range" id="rotateY" min="0" max="360"></label><br>
+    <label>Rotate Z: <input type="range" id="rotateZ" min="0" max="360"></label>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/three@0.158.0/build/three.min.js"></script>
+  <script src="../js/3dcube.js"></script>
+</body>
+</html>
