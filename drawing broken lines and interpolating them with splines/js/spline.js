@@ -13,13 +13,12 @@ canvas.addEventListener("click", (e) => {
 function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-  // Draw points
   ctx.fillStyle = "red";
   points.forEach(([x, y]) => ctx.fillRect(x - 3, y - 3, 6, 6));
 
   if (points.length < 2) return;
 
-  // Sort x ascending for spline
+
   const xs = points.map(p => p[0]);
   const ys = points.map(p => p[1]);
 
