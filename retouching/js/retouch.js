@@ -36,9 +36,9 @@ canvas.addEventListener('mousemove', function(e) {
 
   if (currentEffect === 'blur') {
     applyGaussianBlur(x, y);
-  } else if (currentEffect === 'sepia tone') {
+  } else if (currentEffect === 'Sepia Tone') {
     applySepia(x, y);
-  } else if (currentEffect === 'red tint') {
+  } else if (currentEffect === 'Red Tint') {
     applyRedTint(x, y);
   }
 });
