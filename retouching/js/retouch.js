@@ -6,6 +6,17 @@ let drawing = false;
 let currentEffect = 'blur';
 let brushSize = 20;
 
+
+document.getElementById('effectBlur').addEventListener('click', () => {
+  currentEffect = 'blur';
+});
+document.getElementById('effectSepia').addEventListener('click', () => {
+  currentEffect = 'sepia';
+});
+document.getElementById('effectRedTint').addEventListener('click', () => {
+  currentEffect = 'redtint';
+});
+
 document.getElementById('uploadRetouch').addEventListener('change', function(e) {
   const file = e.target.files[0];
   if (!file) return;
@@ -36,9 +47,9 @@ canvas.addEventListener('mousemove', function(e) {
 
   if (currentEffect === 'blur') {
     applyGaussianBlur(x, y);
-  } else if (currentEffect === 'Sepia Tone') {
+  } else if (currentEffect === 'sepia') {
     applySepia(x, y);
-  } else if (currentEffect === 'Red Tint') {
+  } else if (currentEffect === 'redtint') {
     applyRedTint(x, y);
   }
 });
