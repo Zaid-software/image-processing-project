@@ -1,20 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>Spline Drawing</title>
-  <style>
-    body { font-family: sans-serif; padding: 20px; }
-    canvas { border: 1px solid #ccc; display: block; margin-top: 10px; }
-    button { margin-top: 10px; }
-  </style>
+    <title>Spline Interpolation</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        canvas { border: 1px solid #000; cursor: crosshair; }
+        .controls { margin: 10px 0; }
+        button { margin-right: 5px; }
+    </style>
 </head>
 <body>
-  <h2>Draw Broken Line & Interpolate with Spline</h2>
-  <canvas id="canvas" width="800" height="500"></canvas><br>
-  <button id="toggleSpline">Toggle Spline</button>
+    <h1>Spline Interpolation</h1>
+    <div class="controls">
+        <button id="clearBtn">Clear</button>
+        <button id="interpolateBtn">Interpolate</button>
+        <button id="editBtn">Edit Points</button>
+        <span>Convexity: <input type="range" id="tensionSlider" min="-2" max="2" step="0.1" value="0.5"></span>
+    </div>
+    <canvas id="canvas" width="800" height="500"></canvas>
 
-  <script src="../js/spline.js"></script>
+    <script src="../js/spline.js"></script>
 </body>
 </html>
 
