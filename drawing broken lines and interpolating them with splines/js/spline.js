@@ -107,7 +107,7 @@ const SplineApp = {
         this.ctx.lineWidth = 3;
         this.ctx.beginPath();
         
-        // Move to first point
+
         this.ctx.moveTo(this.points[0].x, this.points[0].y);
         
 
