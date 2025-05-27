@@ -1,39 +1,39 @@
-let scaleImageObj = new Image();
-let scaleCanvas = document.getElementById('scaleCanvas');
-let scaleCtx = scaleCanvas.getContext('2d');
+let originalImage = new Image();
+let canvas = document.getElementById('canvas');
+let ctx = canvas.getContext('2d');
 
-document.getElementById('uploadScale').addEventListener('change', function (e) {
+document.getElementById('upload').addEventListener('change', function(e) {
   const file = e.target.files[0];
   if (!file) return;
 
   const reader = new FileReader();
-  reader.onload = function (event) {
-    scaleImageObj.src = event.target.result;
+  reader.onload = function(event) {
+    originalImage.src = event.target.result;
   };
   reader.readAsDataURL(file);
 });
 
+originalImage.onload = function () {
+  // Initial draw
+  canvas.width = originalImage.width;
+  canvas.height = originalImage.height;
+  ctx.drawImage(originalImage, 0, 0);
+};
+
 function scaleImage() {
-  const ratio = parseFloat(document.getElementById('scaleRatio').value);
-  if (isNaN(ratio) || ratio <= 0) {
-    alert("Please enter a valid scale ratio.");
+  const factor = parseFloat(document.getElementById('scaleFactor').value);
+  if (isNaN(factor) || factor <= 0) {
+    alert("Enter a valid scale factor greater than 0.");
     return;
   }
 
-  const newWidth = scaleImageObj.width * ratio;
-  const newHeight = scaleImageObj.height * ratio;
+  const newWidth = originalImage.width * factor;
+  const newHeight = originalImage.height * factor;
 
-  scaleCanvas.width = newWidth;
-  scaleCanvas.height = newHeight;
-
-  scaleCtx.clearRect(0, 0, newWidth, newHeight);
-  scaleCtx.drawImage(scaleImageObj, 0, 0, newWidth, newHeight);
+  canvas.width = newWidth;
+  canvas.height = newHeight;
+  ctx.clearRect(0, 0, newWidth, newHeight);
+  ctx.drawImage(originalImage, 0, 0, newWidth, newHeight);
 }
 
-function downloadScaledImage() {
-  const link = document.createElement('a');
-  link.download = 'scaled-image.png';
-  link.href = scaleCanvas.toDataURL('image/png');
-  link.click();
-}
 
